@@ -18,4 +18,27 @@ public class Roster {
     public void addStudent(Student student) {
         students.add(student);
     }
+
+    public AverageDispenser averageIterator(){
+        return new AverageIterator();
+    }
+
+    private class AverageIterator implements AverageDispenser {
+        private int index;
+
+        public AverageIterator(){
+            index = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index < Roster.this.students.size();
+        }
+
+        @Override
+        public double nextScore() {
+            return Roster.this.students.get(index++).getAverage();
+        }
+
+    }
 }
